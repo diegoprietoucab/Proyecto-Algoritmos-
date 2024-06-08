@@ -1,0 +1,100 @@
+Don Quijote
+Miguel de Cervantes
+100001
+Aventura
+Disponible
+Historia de dos ciudades
+Charles Dickens
+100002
+Novela historica
+Disponible
+El senor de los anillos: el retorno del rey
+J.R.R. Tolkien
+100003
+Fantasia
+Disponible
+Harry Potter y la piedra filosofal
+J.K. Rowling
+100004
+Fantasia
+Disponible
+El principito
+Antoine de Saint-Exupery
+100005
+Novela infantil
+Disponible
+El hobbit
+J.R.R. Tolkien
+100006
+Fantasia
+Disponible
+Sueno en el pabellon rojo
+Cao Xueqin
+100007
+Novela historica
+Disponible
+Diez negritos
+Agatha Christie
+100008
+Novela policiaca
+Disponible
+Las aventuras de Alicia en el pais de las maravillas
+Lewis Carrol
+100009
+Novela infantil
+Disponible
+El leon, la bruja y el armario
+C.S. Lewis
+100010
+Fantasia
+Disponible
+Ella
+Henry Rider Haggard
+100011
+Aventura
+Disponible
+El codigo Da Vinci
+Dan Brown
+100012
+Novela policiaca
+Disponible
+El guardian entre el centeno
+J.D. Salinger
+100013
+Realismo literario
+Disponible
+El alquimista
+Paulo Coelho
+100014
+Aventura
+Disponible
+Heidi
+Johanna Spyri
+100015
+Literatura infantil
+Disponible
+Ana de las Tejas Verdes
+Lucy Maud Montgomery
+100016
+Literatura juvenil
+Disponible
+Belleza Negra
+Anna Sewell
+100017
+Literatura infantil
+Disponible
+Diario de Ana Frank
+Ana Frank
+100018
+Autobiografia
+Disponible
+Cien Anos de Soledad
+Gabriel Garcia Marquez
+100019
+Realismo magico
+Disponible
+1984
+George Orwell
+100020
+Ficcion distopica
+Disponible
