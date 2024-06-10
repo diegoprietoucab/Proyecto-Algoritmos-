@@ -1,20 +1,21 @@
 import pickle
 import re
 from enum import Enum
+import os.path as path
 
 class Libros(Enum):
-        titulo = 0
-        autor = 1
-        isbn = 2
-        categoria = 3
-        estado = 4
+    titulo = 0
+    autor = 1
+    isbn = 2
+    categoria = 3
+    estado = 4
 
 class Usuarios(Enum):
-        usuario = 0
-        ci = 1
-        fecha = 2
-        titulo = 3
-        isbn = 4
+    usuario = 0
+    ci = 1
+    fecha = 2
+    titulo = 3
+    isbn = 4
 
 def MostrarLibros(arreglo):
     print()
@@ -230,13 +231,13 @@ def BusquedaLinealUsuarioPorLibro(arreglo, objetivo):
     return -1
 
 def main():
-    try:
+    if  path.exists("libros.bin"):
         with open("libros.bin", "rb") as archivo_libros:
             matriz_libros = pickle.load(archivo_libros)
-        try:
+        if path.exists("usuarios.bin"):
             with open("usuarios.bin", "rb") as archivo_usuarios:
                 matriz_usuarios = pickle.load(archivo_usuarios)
-        except:
+        else:
             matriz_usuarios = []
         libros_ordenados_isbn = False
         libros_ordenados_titulo = False
@@ -245,7 +246,7 @@ def main():
         usuarios_ordenados_ci = False
         print()
         print("------------------------------Menú------------------------------") 
-        print("Escriba 1 para mostrar todo el inventario")
+        print("Escriba 1 para mostrar todo el inventario de libros")
         print("Escriba 2 para ordenar los libros por autor")
         print("Escriba 3 para ordenar los libros por título")
         print("Escriba 4 para ordenar los libros por código")
@@ -301,7 +302,7 @@ def main():
                         indice = BusquedaBinariaLibroPorCodigo(codigo, matriz_libros, 0, len(matriz_libros) - 1)
                         ImprimirDatosLibro(indice, matriz_libros)
                     else:
-                        print("Es recomendable que primero ordene los libros por código, para que el proceso sea más eficiente")
+                        print("Es recomendable que primero ordene los libros por código para que el proceso sea más eficiente")
                         print("¿Desea Continuar? (S/N): ", end = "")
                         resp = input()
                         if resp.lower() == "s":
@@ -324,7 +325,7 @@ def main():
                         indice = BusquedaBinariaLibroPorNombre(nombre, matriz_libros, 0, len(matriz_libros) - 1)
                         ImprimirDatosLibro(indice, matriz_libros)
                     else:
-                        print("Es recomendable que primero ordene los libros por título, para que el proceso sea más eficiente")
+                        print("Es recomendable que primero ordene los libros por título para que el proceso sea más eficiente")
                         print("¿Desea Continuar? (S/N): ", end = "")
                         resp = input()
                         if resp.lower() == "s":
@@ -348,19 +349,18 @@ def main():
                     nombre = re.sub("Ó", "O", nombre)
                     nombre = re.sub("Ú", "U", nombre)
                     nombre = re.sub("Ü", "U", nombre)
-                    nombre_minuscula = nombre.lower()
                     if libros_ordenados_titulo:
-                        indice_libro = BusquedaBinariaLibroPorNombre(nombre_minuscula, matriz_libros, 0, len(matriz_libros) - 1)
+                        indice_libro = BusquedaBinariaLibroPorNombre(nombre.lower(), matriz_libros, 0, len(matriz_libros) - 1)
                     else:
                         print()
-                        print("Es recomendable que primero ordene los libros por título, para que el proceso sea más eficiente")
+                        print("Es recomendable que primero ordene los libros por título para que el proceso sea más eficiente")
                         print("¿Desea Continuar? (S/N): ", end = "")
                         resp = input()
                         if resp.lower() == "s":
-                            indice_libro = BusquedaLinealLibroPorNombre(matriz_libros, nombre_minuscula)
+                            indice_libro = BusquedaLinealLibroPorNombre(matriz_libros, nombre.lower())
                         else:
                             indice_libro = -2
-                    if (indice_libro == -1):
+                    if indice_libro == -1:
                         matriz_libros = InsertarLibroNuevo(nombre, matriz_libros)
                         if libros_ordenados_isbn:
                             matriz_libros = OrdenarLibrosPorCodigo(matriz_libros)
@@ -377,14 +377,14 @@ def main():
                                 print("No puede ingresar el libro, porque este no está en el historial de préstamos")
                             else:
                                 if usuarios_ordenados_libro:
-                                    indice_usuario = BusquedaBinariaUsuarioPorLibro(nombre_minuscula, matriz_usuarios, 0, len(matriz_usuarios) - 1)
+                                    indice_usuario = BusquedaBinariaUsuarioPorLibro(nombre.lower(), matriz_usuarios, 0, len(matriz_usuarios) - 1)
                                 else:
                                     print()
-                                    print("Es recomendable que primero ordene los préstamos por título, para que el proceso sea más eficiente")
+                                    print("Es recomendable que primero ordene los préstamos por título para que el proceso sea más eficiente")
                                     print("¿Desea Continuar? (S/N): ", end = "")
                                     resp = input()
                                     if resp.lower() == "s":
-                                        indice_usuario = BusquedaLinealUsuarioPorLibro(matriz_usuarios, nombre_minuscula)
+                                        indice_usuario = BusquedaLinealUsuarioPorLibro(matriz_usuarios, nombre.lower())
                                     else:
                                         indice_usuario = -2
                                 if indice_usuario != -2:
@@ -416,7 +416,7 @@ def main():
                         indice = BusquedaBinariaLibroPorNombre(nombre, matriz_libros, 0, len(matriz_libros) - 1)
                     else:
                         print()
-                        print("Es recomendable que primero ordene los libros por título, para que el proceso sea más eficiente")
+                        print("Es recomendable que primero ordene los libros por título para que el proceso sea más eficiente")
                         print("¿Desea Continuar? (S/N): ", end = "")
                         resp = input()
                         if resp.lower() == "s":
@@ -477,7 +477,7 @@ def main():
             print("Escriba 11 para ordenar el historial de préstamos por CI")
             print("Escriba 0 para salir")
             respuesta = int(input())
-    except:
+    else:
         print()
         print("ERROR. No se ha podido abrir el archivo")
         print()
