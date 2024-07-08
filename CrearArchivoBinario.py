@@ -1,8 +1,9 @@
 import pickle
+import os.path as path
 
 matriz = []
 
-try:
+if path.exists("Libros.txt"):
     arch = open("Libros.txt", "rt")
     x = arch.readlines()
     arch.close()
@@ -17,7 +18,7 @@ try:
     print()
     print("Archivo creado con éxito")
     print()
-except:
+else:
     print()
     print("ERROR. No se pudo abrir el archivo")
     print()
